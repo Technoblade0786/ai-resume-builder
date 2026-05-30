@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ full_name }} - Resume</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #ffffff;
+        color: #000000;
+    }
+
+    /* SAME WIDTH AS FORM / MODERN */
+    .resume-wrap {
+        max-width: 640px;
+        margin: 24px auto 40px;
+        padding: 0 12px;
+    }
+
+    /* ===== PLAIN TOP BAR (ATS SAFE) ===== */
+    .resume-topbar {
+        border: 1px solid #e5e7eb;
+        padding: 10px 16px;
+        margin-bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+    }
+
+    .resume-topbar .brand {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
+
+    .resume-topbar a {
+        text-decoration: none;
+        color: #000000;
+        font-weight: 600;
+    }
+
+    /* ===== RESUME BODY ===== */
+    .resume-container {
+        border: 1px solid #e5e7eb;
+        padding: 32px 36px;
+    }
+
+    /* HEADER */
+    .header h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .header h2 {
+        margin-top: 4px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* SECTIONS */
+    .section {
+        margin-top: 18px;
+    }
+
+    .section-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        border-bottom: 1px solid #000000;
+        padding-bottom: 3px;
+    }
+
+    .content-text {
+        font-size: 14px;
+        line-height: 1.6;
+        white-space: pre-line;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="resume-wrap">
+
+    <!-- ATS SAFE TOP BAR -->
+    <div class="resume-topbar">
+        <div class="brand">AI Resume Builder</div>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    <!-- RESUME CONTENT -->
+    <div class="resume-container">
+
+        <div class="header">
+            <h1>{{ full_name }}</h1>
+            <h2>{{ job_title }}</h2>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Skills</div>
+            <div class="content-text">
+                {{ skills|join:", " }}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Experience</div>
+            <div class="content-text">
+                {{ experience }}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Projects</div>
+            <div class="content-text">
+                {{ projects }}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="content-text">
+                {{ education }}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

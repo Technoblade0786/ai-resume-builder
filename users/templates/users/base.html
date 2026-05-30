@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}AI Resume Builder{% endblock %}</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f5f7, #fdf2f8);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #1f2933, #ec4899);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 0.4px;
+        }
+
+        /* Page spacing */
+        .page-container {
+            padding: 50px 0 70px;
+        }
+
+        /* Cards */
+        .card {
+            border-radius: 18px;
+            border: none;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Dashboard Welcome Card */
+        .welcome-card {
+            background: linear-gradient(135deg, #374151, #ec4899);
+            color: white;
+            border-radius: 20px;
+            padding: 34px;
+            box-shadow: 0 22px 45px rgba(236, 72, 153, 0.35);
+        }
+
+        /* Action Cards */
+        .action-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            height: 100%;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 40px rgba(0, 0, 0, 0.14);
+        }
+
+        .action-card h5 {
+            font-weight: 600;
+        }
+
+        .action-card p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #374151, #ec4899);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+        }
+
+        .btn-outline-dark {
+            border-radius: 10px;
+        }
+
+        /* ✅ Resume Preview Width Control (IMPORTANT) */
+        .resume-preview-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'dashboard' %}">
+            AI Resume Builder
+        </a>
+
+        <div class="d-flex">
+            {% if user.is_authenticated %}
+                <a class="btn btn-light btn-sm" href="{% url 'logout' %}">
+                    Logout
+                </a>
+            {% else %}
+                <a class="btn btn-light btn-sm" href="{% url 'login' %}">
+                    Login
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="container page-container">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

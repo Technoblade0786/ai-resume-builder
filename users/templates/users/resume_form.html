@@ -1,0 +1,119 @@
+{% extends "users/base.html" %}
+{% load form_tags %}
+
+{% block title %}Generate Resume{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-7 col-md-9 col-sm-11">
+
+        <!-- MAIN CARD -->
+        <div class="card border-0 shadow-sm p-4 p-md-5">
+
+            <!-- HEADER -->
+            <div class="text-center mb-4">
+                <h3 class="fw-bold mb-1">Resume Generator</h3>
+                <p class="text-muted small mb-0">
+                    Create a professional, ATS-friendly resume in minutes
+                </p>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger small">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+
+                <!-- BASIC INFO -->
+                <div class="mb-4">
+                    <h6 class="fw-semibold mb-2">Basic Information</h6>
+                    <p class="text-muted small mb-3">Tell us who you are</p>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Full Name</label>
+                        {{ form.full_name|add_class:"form-control" }}
+                    </div>
+
+                    <div>
+                        <label class="form-label small fw-medium">Job Title</label>
+                        {{ form.job_title|add_class:"form-control" }}
+                    </div>
+                </div>
+
+                <!-- RESUME CONTENT -->
+                <div class="mb-4">
+                    <h6 class="fw-semibold mb-2">Resume Content</h6>
+                    <p class="text-muted small mb-3">
+                        Short, clear details work best
+                    </p>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Skills</label>
+                        {{ form.skills|add_class:"form-control" }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Experience</label>
+                        {{ form.experience|add_class:"form-control" }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-medium">Projects</label>
+                        {{ form.projects|add_class:"form-control" }}
+                    </div>
+
+                    <div>
+                        <label class="form-label small fw-medium">Education</label>
+                        {{ form.education|add_class:"form-control" }}
+                    </div>
+                </div>
+
+                <!-- AI MODE -->
+                <div class="mb-4">
+                    <h6 class="fw-semibold mb-2">AI Enhancement</h6>
+                    <p class="text-muted small mb-3">
+                        Optional — improves wording & structure
+                    </p>
+
+                    <div class="form-check mb-3">
+                        {{ form.use_ai }}
+                        <label class="form-check-label small ms-1">
+                            Improve resume using AI
+                        </label>
+                    </div>
+
+                    <div>
+                        <label class="form-label small fw-medium">
+                            OpenAI API Key <span class="text-muted">(optional)</span>
+                        </label>
+                        {{ form.api_key|add_class:"form-control" }}
+                        <small class="text-muted">
+                            Your key is never stored
+                        </small>
+                    </div>
+                </div>
+
+                <!-- TEMPLATE -->
+                <div class="mb-4">
+                    <h6 class="fw-semibold mb-2">Resume Template</h6>
+                    <p class="text-muted small mb-3">
+                        Choose a layout style
+                    </p>
+
+                    {{ form.template|add_class:"form-select" }}
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Generate Resume
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

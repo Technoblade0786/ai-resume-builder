@@ -1,0 +1,75 @@
+{% extends "users/base.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-9">
+
+        <!-- CARD -->
+        <div class="card border-0 shadow-sm p-4 p-md-5">
+
+            <!-- HEADER -->
+            <div class="text-center mb-4">
+                <h3 class="fw-bold mb-1">Create Account</h3>
+                <p class="text-muted small mb-0">
+                    Join AI Resume Builder
+                </p>
+            </div>
+
+            <form method="POST" novalidate>
+                {% csrf_token %}
+
+                <!-- USERNAME -->
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Username</label>
+                    {{ form.username }}
+                </div>
+
+                <!-- EMAIL (if exists) -->
+                {% if form.email %}
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Email</label>
+                    {{ form.email }}
+                </div>
+                {% endif %}
+
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <label class="form-label small fw-medium">Password</label>
+                    {{ form.password1 }}
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="mb-4">
+                    <label class="form-label small fw-medium">Confirm Password</label>
+                    {{ form.password2 }}
+                </div>
+
+                <!-- SUBMIT -->
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Create Account
+                </button>
+
+            </form>
+
+            <!-- FOOTER -->
+            <p class="text-center small mt-4 mb-0">
+                Already have an account?
+                <a href="{% url 'login' %}" class="fw-semibold text-decoration-none">
+                    Login
+                </a>
+            </p>
+
+        </div>
+    </div>
+</div>
+
+<!-- FIX INPUT ALIGNMENT -->
+<style>
+    input {
+        width: 100%;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "users/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-bg py-5">
+
+    <div class="container">
+
+        <!-- Welcome Card -->
+        <div class="welcome-card mb-5 text-white">
+            <h2 class="fw-bold">Welcome back, {{ user.username }} 👋</h2>
+            <p class="mb-0">
+                Build professional resumes and download ATS-friendly PDFs in minutes.
+            </p>
+        </div>
+
+        <!-- Action Cards -->
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="action-card">
+                    <h5>📄 Create Resume</h5>
+                    <p>Generate modern or ATS-friendly resumes.</p>
+                    <a href="{% url 'generate_resume' %}" class="btn btn-primary w-100">
+                        Start Building
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="action-card">
+                    <h5>✨ AI Enhancement</h5>
+                    <p>Improve resume content using AI.</p>
+                    <button class="btn btn-outline-primary w-100" disabled>
+                        Coming Soon
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="action-card">
+                    <h5>⬇️ Download PDF</h5>
+                    <p>Export resumes as professional PDFs.</p>
+                    <button class="btn btn-outline-primary w-100" disabled>
+                        After Resume
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

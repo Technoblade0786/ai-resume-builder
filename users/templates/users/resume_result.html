@@ -1,0 +1,72 @@
+{% extends "users/base.html" %}
+
+{% block title %}Resume Preview{% endblock %}
+
+{% block content %}
+<div class="container my-5" style="max-width:900px;">
+
+    <div class="card shadow-lg p-4">
+
+        <!-- HEADER -->
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">Resume Preview</h3>
+            <hr>
+        </div>
+
+        <!-- LIVE PREVIEW (HTML BASED) -->
+        <div id="resume-preview"
+             class="resume-body"
+             style="background:#fff;padding:20px;border-radius:6px;">
+            {{ resume_html|safe }}
+        </div>
+
+        <!-- EDIT SECTION -->
+        <div class="mt-4">
+            <h5>Edit Resume (Advanced Users)</h5>
+            <textarea
+                id="resume-editor"
+                class="form-control"
+                rows="10"
+                style="font-family:monospace;">{{ resume_html }}</textarea>
+        </div>
+
+        <!-- ACTIONS -->
+        <form method="post"
+              action="{% url 'download_resume_pdf' %}"
+              class="text-center mt-4">
+            {% csrf_token %}
+            <input type="hidden" name="edited_resume" id="edited-resume">
+            <button class="btn btn-success px-4">
+                Download PDF
+            </button>
+        </form>
+
+        {% if ai_used %}
+            <p class="text-center text-success mt-2">
+                AI-Enhanced Resume
+            </p>
+        {% else %}
+            <p class="text-center text-muted mt-2">
+                Free Template Mode
+            </p>
+        {% endif %}
+
+    </div>
+</div>
+
+<!-- LIVE PREVIEW + PDF SYNC -->
+<script>
+    const editor = document.getElementById("resume-editor");
+    const preview = document.getElementById("resume-preview");
+    const hiddenInput = document.getElementById("edited-resume");
+
+    // Initial sync
+    hiddenInput.value = editor.value;
+
+    editor.addEventListener("input", () => {
+        preview.innerHTML = editor.value;   // HTML preview
+        hiddenInput.value = editor.value;   // Send to backend
+    });
+</script>
+
+{% endblock %}

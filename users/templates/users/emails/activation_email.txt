@@ -1,0 +1,8 @@
+Hello {{ user.username }},
+
+Activate your account using the link below:
+
+{{ activation_url }}
+
+Thank you,
+AI Resume Builder Team

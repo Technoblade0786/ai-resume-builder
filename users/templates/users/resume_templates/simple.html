@@ -1,0 +1,48 @@
+{% extends "users/base.html" %}
+
+{% block title %}Resume Preview{% endblock %}
+
+{% block content %}
+
+<div class="resume-preview-wrap">
+
+    <div class="card border-0 shadow-sm p-4 p-md-5">
+
+        <h3 class="fw-bold mb-1">{{ full_name }}</h3>
+        <p class="text-muted small mb-4">{{ job_title }}</p>
+
+        <hr>
+
+        <div class="mb-3">
+            <strong class="small">Skills</strong>
+            <p class="small mb-0">
+                {{ skills|join:", " }}
+            </p>
+        </div>
+
+        <div class="mb-3">
+            <strong class="small">Experience</strong>
+            <p class="small mb-0" style="white-space: pre-line;">
+                {{ experience }}
+            </p>
+        </div>
+
+        <div class="mb-3">
+            <strong class="small">Projects</strong>
+            <p class="small mb-0" style="white-space: pre-line;">
+                {{ projects }}
+            </p>
+        </div>
+
+        <div>
+            <strong class="small">Education</strong>
+            <p class="small mb-0" style="white-space: pre-line;">
+                {{ education }}
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

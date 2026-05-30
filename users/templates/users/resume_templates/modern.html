@@ -1,0 +1,131 @@
+{% extends "users/base.html" %}
+
+{% block title %}Resume Preview{% endblock %}
+
+{% block content %}
+
+<style>
+/* Modern Resume Styling */
+.modern-resume {
+    max-width: 850px;
+    margin: auto;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.modern-header {
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    color: white;
+    padding: 30px 40px;
+}
+
+.modern-header h2 {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.modern-section-title {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #f43f5e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modern-divider {
+    height: 3px;
+    width: 40px;
+    background: linear-gradient(90deg, #f43f5e, #ec4899);
+    border-radius: 20px;
+    margin: 6px 0 16px;
+}
+
+.skill-pill {
+    background: linear-gradient(135deg, #f43f5e, #ec4899);
+    color: white;
+    padding: 6px 14px;
+    font-size: 13px;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+.modern-content {
+    padding: 40px;
+}
+
+.modern-block {
+    margin-bottom: 32px;
+}
+</style>
+
+<div class="modern-resume shadow-lg">
+
+    <!-- HEADER -->
+    <div class="modern-header">
+        <h2>{{ full_name }}</h2>
+        <p class="mb-0 opacity-75">{{ job_title }}</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="modern-content">
+
+        <!-- SKILLS -->
+        <div class="modern-block">
+            <div class="modern-section-title">
+                🛠 Skills
+            </div>
+            <div class="modern-divider"></div>
+
+            <div class="d-flex flex-wrap gap-2">
+                {% for skill in skills %}
+                    <span class="skill-pill">
+                        {{ skill }}
+                    </span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="modern-block">
+            <div class="modern-section-title">
+                💼 Experience
+            </div>
+            <div class="modern-divider"></div>
+
+            <p class="text-secondary small mb-0" style="white-space: pre-line;">
+                {{ experience }}
+            </p>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="modern-block">
+            <div class="modern-section-title">
+                🚀 Projects
+            </div>
+            <div class="modern-divider"></div>
+
+            <p class="text-secondary small mb-0" style="white-space: pre-line;">
+                {{ projects }}
+            </p>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="modern-block mb-0">
+            <div class="modern-section-title">
+                🎓 Education
+            </div>
+            <div class="modern-divider"></div>
+
+            <p class="text-secondary small mb-0" style="white-space: pre-line;">
+                {{ education }}
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
