@@ -108,7 +108,10 @@ def resend_activation(request):
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+
         if form.is_valid():
+            print("FORM VALID")
+
             user = form.save(commit=False)
             user.is_active = False
             user.save()
@@ -120,6 +123,10 @@ def register(request):
                 "Registration successful. Check your email to activate your account.",
             )
             return redirect("login")
+
+        else:
+            print(form.errors)
+
     else:
         form = RegisterForm()
 
